@@ -1,8 +1,8 @@
 const passport = require('passport')
 const github = require('passport-github2')
-const Cart = require('../dao/models/cartModel')
-const usermodel = require('../dao/models/usermodel')
-const config = require('./config')
+const Cart = require('../../dao/models/cartModel')
+const usermodel = require('../../dao/models/usermodel')
+const config = require('../config')
 
 const initPassportGithub = () => {
     const callbackURL = process.env.NODE_ENV === 'production'

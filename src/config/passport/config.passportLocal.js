@@ -1,8 +1,8 @@
 const passport = require('passport')
 const local = require('passport-local')
-const usuariosModelo = require('../dao/models/usermodel')
-const Cart = require('../dao/models/cartModel')
-const { creaHash, validaPassword } = require('../utils/utils')
+const usuariosModelo = require('../../dao/models/usermodel')
+const Cart = require('../../dao/models/cartModel')
+const { creaHash, validaPassword } = require('../../utils/utils')
 
 const inicializarPassport = () => {
 
