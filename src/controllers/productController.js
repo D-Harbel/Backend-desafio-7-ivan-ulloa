@@ -73,7 +73,7 @@ class ProductController {
             await ProductDao.addProduct(title, description, code, price, true, stock, category, thumbnails);
 
             const products = await ProductDao.getProducts();
-            io.emit('updateProducts', products);
+            req.io.emit('updateProducts', products);
 
             res.status(201).json({ message: 'Producto agregado exitosamente' });
         } catch (error) {
@@ -90,7 +90,7 @@ class ProductController {
             await ProductDao.updateProduct(productId, updatedProduct);
 
             const products = await ProductDao.getProducts();
-            io.emit('updateProducts', products);
+            req.io.emit('updateProducts', products);
 
             res.status(200).json({ message: 'Producto actualizado exitosamente' });
         } catch (error) {
@@ -126,10 +126,10 @@ class ProductController {
         try {
             await ProductDao.deleteProduct(productId);
 
-            io.emit('productDeleted', { productId });
+            req.io.emit('productDeleted', { productId });
 
             const products = await ProductDao.getProducts();
-            io.emit('updateProducts', products);
+            req.io.emit('updateProducts', products);
 
             res.status(200).json({ message: 'Producto eliminado exitosamente' });
         } catch (error) {

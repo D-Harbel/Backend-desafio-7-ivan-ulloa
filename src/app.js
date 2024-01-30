@@ -47,6 +47,7 @@ app.use(passport.session())
 
 app.use((req, res, next) => {
     res.locals.isAuthenticated = req.session && req.session.isAuthenticated || false;
+    req.io = io;
     next();
 });
 
@@ -76,8 +77,8 @@ app.use('/api/github', SessionGithubRouter(io))
 app.use('/api/clientes', ClientRouter(io))
 
 
-app.use('/api/products', ProductRouter);
-app.use('/api/carts', CartRouter);
+app.use('/api/products', ProductRouter(io));
+app.use('/api/carts', CartRouter(io));
 app.use('/chat', ChatRouter(io, MessageDao));
 
 app.get('/views/carts/:cid', async (req, res) => {

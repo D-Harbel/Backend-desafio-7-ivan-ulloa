@@ -50,17 +50,17 @@ class CartController {
         }
     }
 
-    async addQuantityToCart(req,res) {
+    async addQuantityToCart(req, res) {
         let cid = req.params.cid
         let pid = req.params.pid
         let quantity = parseInt(req.body.quantity)
-    
+
         if (isNaN(quantity)) {
             return res.status(400).json({ error: 'La cantidad debe ser un número entero' })
         }
-    
+
         CartDao.addProductToCart(cid, pid, quantity)
-        res.status(201).json({message: 'Producto agregado al carrito' })
+        res.status(201).json({ message: 'Producto agregado al carrito' })
     }
 
     async deleteProductFromCart(req, res) {
